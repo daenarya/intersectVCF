@@ -1,0 +1,21 @@
+library(VariantAnnotation)
+vcf1 <- readVcf("C://Users/Jennifer/Documents/Bioinformatics/files/CEU.exon.2010_03.sites.vcf.gz","B36")
+vcf2 <- readVcf("C://Users/Jennifer/Documents/Bioinformatics/files/CHB.exon.2010_03.sites.vcf","B36")
+
+vcfIntersect <- tempfile()
+
+vr1 <- as(vcf1, "VRanges")
+vr2 <- as(vcf2, "VRanges")
+
+intersectVRanges <- function(x, y) {
+  m <- match(vr1,vr2)
+  s1 <- vr1[!is.na(m)]
+  s2 <- vr2[m[!is.na(m)]]
+  res <- list(s1, s2)
+  return(res)
+}
+
+#na.omit(res)  ## does not work on class VRanges
+#vcf <- as(res, "VCF") ## Can not convert back to VCF because it contains NA's
+
+#writeVcf(res,vcfIntersect,index=TRUE) ## Can not write to a VCF file because it is class VRanges and not VCF
