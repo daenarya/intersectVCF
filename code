@@ -1,6 +1,6 @@
 library(VariantAnnotation)
-vcf1 <- readVcf("C://Users/Jennifer/Documents/Bioinformatics/files/CEU.exon.2010_03.sites.vcf.gz","B36")
-vcf2 <- readVcf("C://Users/Jennifer/Documents/Bioinformatics/files/CHB.exon.2010_03.sites.vcf","B36")
+vcf1 <- readVcf("./in1.vcf","hg19")
+vcf2 <- readVcf("./in2.vcf","hg19")
 
 vcfIntersect <- tempfile()
 
